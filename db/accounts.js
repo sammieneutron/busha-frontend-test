@@ -42,7 +42,7 @@ const accounts = [
     currency: "XLM",
     hold: "0",
     pending_balance: "0",
-    balance: "0",
+    balance: "0.2",
     name: "Stellar",
     type: "digital",
     imgURL:
