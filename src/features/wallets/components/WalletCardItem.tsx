@@ -4,6 +4,7 @@ import { CurrencyPresenter } from "../../../components/shared/CurrencyPresenter"
 interface Props{
   account: any;
 }
+
 export function WalletCardItem({account}: Props) {
   return (
     <div
@@ -33,9 +34,10 @@ export function WalletCardItem({account}: Props) {
       </dt>
       <dd className="ml-4">
         <p className="text-2xl font-semibold text-[#ffffff]">
-          {/* <CurrencyPresenter prefix={account.currency === 'NGN' ? '₦' : ''} value={account.balance} />{' '} 
-          {account.currency !== 'NGN' ? account.currency : ''} */}
-          {account.balance}
+          {account.currency === 'NGN' ? '₦' : ''}
+          {/* <span><CurrencyPresenter value={account.balance} /></span> */}
+          <span>{account.balance}</span>
+          {' '}{account.currency !== 'NGN' ? account.currency : ''}
         </p>
       </dd>
       <div className="absolute right-0 bottom-0 px-4 py-4 sm:px-6">

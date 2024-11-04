@@ -43,11 +43,13 @@ export function AddNewWallet({ isOpen, title, description, onClose }: Props) {
   
       if (!response.ok) {
         setAlertState('error');
-        setAlertMessage('Failed to create wallet');
+        setAlertMessage('Network error');
       } else {
         // Handle successful creation
         setAlertState('success');
         setAlertMessage('Wallet created successfully!');
+        // Close the modal after a successful creation
+        onClose(); // Close the modal
       }
     } catch (error: any) {
       console.error(error);
@@ -57,6 +59,7 @@ export function AddNewWallet({ isOpen, title, description, onClose }: Props) {
       setIsLoading(false); // Ensure this is in a finally block to always run
     }
   };
+  
   
 
   // Map the wallets to the expected format for the SelectField options
@@ -105,7 +108,9 @@ export function AddNewWallet({ isOpen, title, description, onClose }: Props) {
                   onChange={handleSelectChange} // Update state on select change
                 />
                 <div className="mt-5 flex justify-center">
-                  <Button type="submit" aria-label={isLoading ? "Loading...": ""} isLoading={isLoading}>Create wallet</Button>
+                  <Button type="submit">
+                    {isLoading ? <span aria-label="Loading...">Loading...</span> : "Create wallet"}
+                  </Button>
                 </div>
               </>
             </form>
