@@ -15,18 +15,36 @@ export const useGetAccounts = () => {
         throw new Error('Network Error');
       }
       const data = await response.json();
-      setAccounts(data); 
-      setError(null); 
+      setAccounts(data);
+      setError(null);
     } catch (error: any) {
-      setError(error.message); 
+      if (error.name !== 'AbortError') { // Avoid updating state if the error is from an aborted fetch
+        setError(error.message);
+      }
     } finally {
-      setLoading(false); 
+      setLoading(false);
     }
   };
 
   useEffect(() => {
-    fetchAccounts();
+    let isMounted = true;
+
+    const fetchData = async () => {
+      try {
+        if (isMounted) {
+          await fetchAccounts();
+        }
+      } catch (error) {
+        console.error('Fetch error:', error);
+      }
+    };
+
+    fetchData();
+
+    return () => {
+      isMounted = false; // Cleanup to prevent state updates
+    };
   }, []);
 
-  return { accounts, loading, error, fetchAccounts }; 
+  return { accounts, loading, error, fetchAccounts };
 };
