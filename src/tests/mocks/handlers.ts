@@ -6,7 +6,7 @@ const BASE_URL = "http://localhost:3090";
 
 export const handlers = [
   rest.get(`${BASE_URL}/accounts`, (req, res, ctx) => {
-    return res(ctx.json(accounts));
+    return res(ctx.status(200), ctx.json(accounts)); // Ensure 'accounts' has expected structure
   }),
   rest.post(`${BASE_URL}/accounts`, (req, res, ctx) => {
     return res(
@@ -25,7 +25,7 @@ export const handlers = [
   }),
 
   rest.get(`${BASE_URL}/wallets`, (req, res, ctx) => {
-    return res(ctx.json(wallets));
+    return res(ctx.status(200), ctx.json(wallets));
   }),
 ];
 
