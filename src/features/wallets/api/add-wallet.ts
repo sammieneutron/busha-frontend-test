@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { BASE_URL } from "../base-api";
 
 interface Props {
   onClose: () => void;
@@ -9,7 +10,7 @@ export const useAddWallet = ({ onClose }: Props) => {
   const [alertMessage, setAlertMessage] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const BASE_URL = 'http://localhost:3090';
+  
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();

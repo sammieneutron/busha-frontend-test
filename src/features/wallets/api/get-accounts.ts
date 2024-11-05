@@ -1,11 +1,10 @@
 import { useState, useEffect } from 'react';
+import { BASE_URL } from '../base-api';
 
 export const useGetAccounts = () => {
   const [accounts, setAccounts] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<null | string>(null);
-
-  const BASE_URL = 'http://localhost:3090';
 
   const fetchAccounts = async () => {
     setLoading(true);
